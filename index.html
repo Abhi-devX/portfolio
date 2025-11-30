@@ -6,6 +6,7 @@
     <title>Abhijeet Divekar | Full Stack .NET Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/tP2LcrkX/Whats-App-Image-2025-11-30-at-2-43-38-PM.jpg">
     <style>
         :root {
             --primary: #2563eb;
@@ -1117,6 +1118,187 @@
             }
         }
 
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 18px;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .bot-message {
+            background: #f1f5f9;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-input button:hover {
+            background: var(--primary-dark);
+        }
+
+        .quick-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-question {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-question:hover {
+            background: #f8fafc;
+            border-color: var(--primary);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             h1 {
@@ -1253,6 +1435,16 @@
             .code-window {
                 padding: 1rem;
             }
+
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chatbot-window {
+                width: 300px;
+                height: 450px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1283,7 +1475,6 @@
     <!-- Header & Navigation -->
     <header id="header">
         <nav>
-            <div class="logo">AD</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -1381,7 +1572,6 @@
         </div>
     </section>
 
-    <!-- Rest of your sections remain the same -->
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -1396,7 +1586,6 @@
                     </a>
                 </div>
                 <div class="about-image">
-                    <!-- Replace with your actual photo URL -->
                     <img src="https://i.ibb.co/dwx60NVs/abhi-jpg.jpg" alt="Abhijeet Divekar">
                 </div>
             </div>
@@ -1658,129 +1847,362 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile menu functionality
-        const mobileMenu = document.getElementById('mobileMenu');
-        const navLinks = document.getElementById('navLinks');
+    <!-- Chatbot Container -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-comment"></i>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Ask Me Anything</h3>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    Hi there! I'm Abhijeet's assistant. How can I help you today?
+                </div>
+                <div class="quick-questions" id="quickQuestions">
+                    <div class="quick-question" data-question="Tell me about your experience">Tell me about your experience</div>
+                    <div class="quick-question" data-question="What are your technical skills">What are your technical skills</div>
+                    <div class="quick-question" data-question="Can I see your projects">Can I see your projects</div>
+                    <div class="quick-question" data-question="How can I contact you">How can I contact you</div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message...">
+                <button id="chatbotSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-        mobileMenu.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            
-            // Change icon based on menu state
-            const icon = mobileMenu.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
+   <script>
+    // Mobile menu functionality
+const mobileMenu = document.getElementById('mobileMenu');
+const navLinks = document.getElementById('navLinks');
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                
-                // Reset icon to bars
-                const icon = mobileMenu.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
+mobileMenu.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    
+    const icon = mobileMenu.querySelector('i');
+    if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = navLinks.contains(event.target);
-            const isClickOnMenu = mobileMenu.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickOnMenu && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                
-                // Reset icon to bars
-                const icon = mobileMenu.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        
+        const icon = mobileMenu.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    });
+});
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
+// Header scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+    } else {
+        header.classList.remove('header-scrolled');
+    }
+});
 
-        // Scroll reveal animations
-        function revealOnScroll() {
-            const elements = document.querySelectorAll('.about-text, .about-image, .skill-category, .project-card, .timeline-item, .contact-info, .contact-form');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
+// Scroll reveal animations
+function revealOnScroll() {
+    const elements = document.querySelectorAll('.about-text, .about-image, .skill-category, .project-card, .timeline-item, .contact-info, .contact-form');
+    
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
             });
         }
+    });
+});
 
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+// Scroll to section function
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        window.scrollTo({
+            top: section.offsetTop - 80,
+            behavior: 'smooth'
         });
+    }
+}
 
-        // Scroll to section function
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                window.scrollTo({
-                    top: section.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
+// Form submission with Formspree
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    const submitBtn = document.getElementById('submit-btn');
+    const formMessage = document.getElementById('form-message');
+    
+    // Disable submit button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    
+    // Form will be submitted to Formspree which will handle the email sending
+    // The success/error handling is done by Formspree
+});
 
-        // Form submission with Formspree
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            const submitBtn = document.getElementById('submit-btn');
-            const formMessage = document.getElementById('form-message');
-            
-            // Disable submit button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            
-            // Form will be submitted to Formspree which will handle the email sending
-            // The success/error handling is done by Formspree
-        });
+// Download resume button
+document.getElementById('download-resume').addEventListener('click', function(e) {
+    // This will automatically download the file named "Abhijeet_Divekar_Resume.pdf"
+    // Make sure you upload your resume file with this exact name to your server
+});
 
-        // Download resume button
-        document.getElementById('download-resume').addEventListener('click', function(e) {
-            // This will automatically download the file named "Abhijeet_Divekar_Resume.pdf"
-            // Make sure you upload your resume file with this exact name to your server
-        });
-    </script>
+// Chatbot functionality
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbotWindow = document.getElementById('chatbotWindow');
+const chatbotClose = document.getElementById('chatbotClose');
+const chatbotMessages = document.getElementById('chatbotMessages');
+const chatbotInput = document.getElementById('chatbotInput');
+const chatbotSend = document.getElementById('chatbotSend');
+const quickQuestions = document.getElementById('quickQuestions');
+
+// Toggle chatbot window
+chatbotToggle.addEventListener('click', function() {
+    chatbotWindow.classList.toggle('active');
+});
+
+// Close chatbot window
+chatbotClose.addEventListener('click', function() {
+    chatbotWindow.classList.remove('active');
+});
+
+// Send message function
+function sendMessage() {
+    const message = chatbotInput.value.trim();
+    if (message === '') return;
+
+    // Add user message
+    addMessage(message, 'user');
+    chatbotInput.value = '';
+
+    // Hide quick questions after first user message
+    if (quickQuestions.style.display !== 'none') {
+        quickQuestions.style.display = 'none';
+    }
+
+    // Process and respond
+    setTimeout(() => {
+        const response = getBotResponse(message);
+        addMessage(response, 'bot');
+    }, 500);
+}
+
+// Send message on button click
+chatbotSend.addEventListener('click', sendMessage);
+
+// Send message on Enter key
+chatbotInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Quick question click handler
+document.querySelectorAll('.quick-question').forEach(question => {
+    question.addEventListener('click', function() {
+        const questionText = this.getAttribute('data-question');
+        chatbotInput.value = questionText;
+        sendMessage();
+    });
+});
+
+// Add message to chat
+function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+    messageDiv.textContent = text;
+    chatbotMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+// Bot response logic
+function getBotResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // Personal information responses
+    if (lowerMessage.includes('mobile') || lowerMessage.includes('phone') || lowerMessage.includes('number') || lowerMessage.includes('contact')) {
+        return "You can reach Abhijeet at +91 7387182357. Feel free to call or WhatsApp!";
+    }
+    
+    if (lowerMessage.includes('email') || lowerMessage.includes('gmail') || lowerMessage.includes('mail')) {
+        return "Abhijeet's email address is divekarabhiii@gmail.com. He typically responds within 24 hours!";
+    }
+    
+    if (lowerMessage.includes('location') || lowerMessage.includes('address') || lowerMessage.includes('where') || lowerMessage.includes('based')) {
+        return "Abhijeet is based in Pune, India. He's open to both remote and onsite opportunities in Pune!";
+    }
+    
+    if (lowerMessage.includes('portfolio') || lowerMessage.includes('website') || lowerMessage.includes('github')) {
+        return "You can view Abhijeet's portfolio at Abhi-maxx.github.io and his GitHub profile at github.com/Abhi-maxx";
+    }
+    
+    if (lowerMessage.includes('linkedin') || lowerMessage.includes('linkedin')) {
+        return "Connect with Abhijeet on LinkedIn: linkedin.com/in/abhijeet-divekar-4ab857289/";
+    }
+    
+    if (lowerMessage.includes('name') || lowerMessage.includes('who are you')) {
+        return "I'm Abhijeet's virtual assistant! Abhijeet Divekar is a Full Stack .NET Developer based in Pune, India.";
+    }
+    
+    // Personal & Professional Questions
+    if (lowerMessage.includes('age') || lowerMessage.includes('old')) {
+        return "I'd prefer not to share specific age details, but Abhijeet is a young professional with 2+ years of experience in .NET development.";
+    }
+    
+    if (lowerMessage.includes('salary') || lowerMessage.includes('pay') || lowerMessage.includes('compensation')) {
+        return "For compensation details, please contact Abhijeet directly via email. He's open to discussing opportunities that match his skills and experience.";
+    }
+    
+    if (lowerMessage.includes('hobby') || lowerMessage.includes('interest') || lowerMessage.includes('hobbies')) {
+        return "Outside of coding, Abhijeet enjoys learning new technologies, contributing to open-source projects, and staying updated with the latest trends in software development.";
+    }
+    
+    if (lowerMessage.includes('availability') || lowerMessage.includes('available') || lowerMessage.includes('freelance')) {
+        return "Abhijeet is available for full-time opportunities, freelance projects, and collaborations. Feel free to reach out to discuss potential opportunities!";
+    }
+    
+    // Technical Deep-Dive Questions
+    if (lowerMessage.includes('framework') || lowerMessage.includes('.net')) {
+        return "Abhijeet specializes in .NET technologies including ASP.NET MVC, ASP.NET Core, Web API, Entity Framework, and Windows Forms applications.";
+    }
+    
+    if (lowerMessage.includes('database') || lowerMessage.includes('sql')) {
+        return "He has strong experience with SQL Server, T-SQL, stored procedures, and database design principles for scalable applications.";
+    }
+    
+    if (lowerMessage.includes('frontend') || lowerMessage.includes('javascript') || lowerMessage.includes('angular')) {
+        return "For frontend development, Abhijeet works with HTML5, CSS3, JavaScript, Angular, Bootstrap, and jQuery to create responsive user interfaces.";
+    }
+    
+    if (lowerMessage.includes('api') || lowerMessage.includes('rest')) {
+        return "He has experience building RESTful APIs using ASP.NET Web API, with knowledge of authentication, documentation (Swagger), and integration testing.";
+    }
+    
+    // Project-Specific Questions
+    if (lowerMessage.includes('visitor track') || lowerMessage.includes('visitor management')) {
+        return "Visitor Track is a smart visitor management system built with C# WinForms and SQL Server for tracking visitor entries, purposes, and data storage.";
+    }
+    
+    if (lowerMessage.includes('society management') || lowerMessage.includes('society system')) {
+        return "The Society Management System is a web application with role-based access, financial tracking, payment management, and reporting features built with ASP.NET MVC.";
+    }
+    
+    if (lowerMessage.includes('github') || lowerMessage.includes('repository') || lowerMessage.includes('repos')) {
+        return "You can explore Abhijeet's projects and code on GitHub: github.com/Abhi-maxx. Some projects may be private due to client confidentiality.";
+    }
+    
+    // Career & Opportunity Questions
+    if (lowerMessage.includes('hire') || lowerMessage.includes('recruit') || lowerMessage.includes('job')) {
+        return "Yes, Abhijeet is actively looking for new opportunities! He's interested in Full Stack .NET Developer roles, both remote and in Pune.";
+    }
+    
+    if (lowerMessage.includes('interview') || lowerMessage.includes('schedule')) {
+        return "Great! Please email Abhijeet at divekarabhiii@gmail.com to schedule an interview. He's flexible with timing and format.";
+    }
+    
+    if (lowerMessage.includes('relocate') || lowerMessage.includes('remote')) {
+        return "Abhijeet is based in Pune and prefers opportunities in Pune or remote positions. He's open to discussing relocation for the right opportunity.";
+    }
+    
+    if (lowerMessage.includes('experience') || lowerMessage.includes('years')) {
+        return "Abhijeet has 2+ years of experience in Full Stack .NET Development with hands-on knowledge of C#, ASP.NET, SQL Server, and modern web technologies.";
+    }
+    
+    if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('qualification')) {
+        return "Abhijeet is pursuing a Master of Computer Science at Savitribai Phule Pune University (expected 2026) and holds a Bachelor of Computer Science from Vidya Pratishthan College, Baramati (2024).";
+    }
+    
+    // General responses
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return "Hello! I'm Abhijeet's assistant. How can I help you today?";
+    }
+    
+    if (lowerMessage.includes('experience') || lowerMessage.includes('work')) {
+        return "Abhijeet has 2+ years of experience in Full Stack .NET Development. He specializes in C#, ASP.NET, SQL Server, and modern web technologies. Check out the Experience section for more details!";
+    }
+    
+    if (lowerMessage.includes('skill') || lowerMessage.includes('technology')) {
+        return "Abhijeet's technical skills include C#, ASP.NET MVC/Core, SQL Server, JavaScript, HTML/CSS, Angular, Entity Framework, and more. You can find a complete list in the Skills section!";
+    }
+    
+    if (lowerMessage.includes('project') || lowerMessage.includes('work')) {
+        return "Abhijeet has worked on several projects including Visitor Track, Society Management System, and this portfolio website. Check out the Projects section to see them in detail!";
+    }
+    
+    if (lowerMessage.includes('resume') || lowerMessage.includes('cv')) {
+        return "You can download Abhijeet's resume by clicking the 'Download Resume' button in the About section!";
+    }
+    
+    if (lowerMessage.includes('service') || lowerMessage.includes('hire') || lowerMessage.includes('job')) {
+        return "Abhijeet is available for Full Stack .NET Development projects and opportunities. He specializes in web applications, APIs, and database solutions. Feel free to reach out via the Contact section!";
+    }
+    
+    if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+        return "You're welcome! Let me know if you have any other questions.";
+    }
+    
+    if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
+        return "Goodbye! Feel free to reach out if you have more questions. Have a great day!";
+    }
+    
+
+     if (lowerMessage.includes('bye bye') || lowerMessage.includes('goodbye')) {
+        return "Goodbye! Feel free to reach out if you have more questions. Have a great day!";
+    }
+    
+    if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
+        return "I can help you with information about Abhijeet's skills, experience, projects, contact details, education, and availability. Try asking about his technical expertise or how to contact him!";
+    }
+
+
+       if (lowerMessage.includes('help me ') || lowerMessage.includes('what can you do')) {
+        return "I can help you with information about Abhijeet's skills, experience, projects, contact details, education, and availability. Try asking about his technical expertise or how to contact him!";
+    }
+
+    
+    return "I'm not sure how to answer that. You can ask me about Abhijeet's experience, skills, projects, contact information, education, or availability. Try one of the quick questions above!";
+}
+   </script>
 </body>
 </html>
