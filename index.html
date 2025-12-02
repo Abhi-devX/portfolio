@@ -392,6 +392,27 @@
             align-items: center;
             margin-bottom: 1.5rem;
         }
+        .category-title {
+    background: transparent !important;
+    color: var(--text-color) !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: default;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding: 5px 0;
+}
+
+.category-title:hover {
+    transform: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-color: var(--border-color) !important;
+}
 
         .window-controls {
             display: flex;
@@ -1863,12 +1884,30 @@
                 <div class="message bot-message">
                     Hi there! I'm Abhijeet's assistant. How can I help you today?
                 </div>
-                <div class="quick-questions" id="quickQuestions">
-                    <div class="quick-question" data-question="Tell me about your experience">Tell me about your experience</div>
-                    <div class="quick-question" data-question="What are your technical skills">What are your technical skills</div>
-                    <div class="quick-question" data-question="Can I see your projects">Can I see your projects</div>
-                    <div class="quick-question" data-question="How can I contact you">How can I contact you</div>
-                </div>
+             <div class="quick-questions" id="quickQuestions">
+    <!-- Career & Experience -->
+    <div class="quick-question" data-question="Tell me about your experience">💼 Experience</div>
+    <div class="quick-question" data-question="What are your career goals?">🎯 Career Goals</div>
+    
+    <!-- Technical Skills -->
+    <div class="quick-question" data-question="What are your technical skills">🛠️ Technical Skills</div>
+    <div class="quick-question" data-question="What is your .NET expertise?">⚡ .NET Expertise</div>
+    <div class="quick-question" data-question="Tell me about your database skills">🗄️ Database Skills</div>
+    
+    <!-- Projects -->
+    <div class="quick-question" data-question="Can I see your projects">🚀 Projects</div>
+    <div class="quick-question" data-question="Tell me about Visitor Track system">📋 Visitor Track</div>
+ 
+    
+    <!-- Contact & Personal -->
+    <div class="quick-question" data-question="How can I contact you">📞 Contact Info</div>
+    <div class="quick-question" data-question="What is your education background?">🎓 Education</div>
+    <div class="quick-question" data-question="Tell me about yourself">👤 About Me</div>
+    
+    <!-- Quick Inquiries -->
+
+   
+</div>
             </div>
             <div class="chatbot-input">
                 <input type="text" id="chatbotInput" placeholder="Type your message...">
@@ -2057,151 +2096,232 @@ function addMessage(text, sender) {
 }
 
 // Bot response logic
+// Bot response logic - Enhanced Version
 function getBotResponse(message) {
     const lowerMessage = message.toLowerCase();
     
-    // Personal information responses
-    if (lowerMessage.includes('mobile') || lowerMessage.includes('phone') || lowerMessage.includes('number') || lowerMessage.includes('contact')) {
-        return "You can reach Abhijeet at +91 7387182357. Feel free to call or WhatsApp!";
+    // ========== PERSONAL & BASIC INFO (Expanded) ==========
+    if (lowerMessage.includes('name') || lowerMessage.includes('who are you') || lowerMessage.includes('your name')) {
+        return "I'm Abhijeet's virtual assistant! Abhijeet Divekar is a passionate Full Stack .NET Developer from Pune, India. How can I help you today?";
     }
     
-    if (lowerMessage.includes('email') || lowerMessage.includes('gmail') || lowerMessage.includes('mail')) {
-        return "Abhijeet's email address is divekarabhiii@gmail.com. He typically responds within 24 hours!";
+    if (lowerMessage.includes('age') || lowerMessage.includes('how old') || lowerMessage.includes('birthday')) {
+        return "Abhijeet is in his early 20s, bringing fresh perspectives and modern approaches to software development!";
     }
     
-    if (lowerMessage.includes('location') || lowerMessage.includes('address') || lowerMessage.includes('where') || lowerMessage.includes('based')) {
-        return "Abhijeet is based in Pune, India. He's open to both remote and onsite opportunities in Pune!";
+    if (lowerMessage.includes('birth') || lowerMessage.includes('born') || lowerMessage.includes('birthplace')) {
+        return "Abhijeet was born and raised in Maharashtra, India, and has been passionate about technology from a young age.";
     }
     
-    if (lowerMessage.includes('portfolio') || lowerMessage.includes('website') || lowerMessage.includes('github')) {
-        return "You can view Abhijeet's portfolio at Abhi-maxx.github.io and his GitHub profile at github.com/Abhi-maxx";
+    if (lowerMessage.includes('personality') || lowerMessage.includes('describe yourself') || lowerMessage.includes('character')) {
+        return "Abhijeet is known for being detail-oriented, proactive, and a quick learner. He enjoys problem-solving and collaborating with teams to build impactful solutions.";
     }
     
-    if (lowerMessage.includes('linkedin') || lowerMessage.includes('linkedin')) {
-        return "Connect with Abhijeet on LinkedIn: linkedin.com/in/abhijeet-divekar-4ab857289/";
+    if (lowerMessage.includes('strength') || lowerMessage.includes('strongest')) {
+        return "His key strengths include logical thinking, clean code practices, database optimization, and ability to quickly adapt to new technologies.";
     }
     
-    if (lowerMessage.includes('name') || lowerMessage.includes('who are you')) {
-        return "I'm Abhijeet's virtual assistant! Abhijeet Divekar is a Full Stack .NET Developer based in Pune, India.";
+    // ========== CONTACT INFORMATION (Expanded) ==========
+    if (lowerMessage.includes('mobile') || lowerMessage.includes('phone') || lowerMessage.includes('whatsapp') || lowerMessage.includes('call')) {
+        return "You can reach Abhijeet at +91 7387182357 (call or WhatsApp). He prefers WhatsApp for initial contact!";
     }
     
-    // Personal & Professional Questions
-    if (lowerMessage.includes('age') || lowerMessage.includes('old')) {
-        return "I'd prefer not to share specific age details, but Abhijeet is a young professional with 2+ years of experience in .NET development.";
+    if (lowerMessage.includes('email') || lowerMessage.includes('gmail') || lowerMessage.includes('mail') || lowerMessage.includes('contact')) {
+        return "Email: divekarabhiii@gmail.com. He checks emails regularly and typically responds within 12-24 hours.";
     }
     
-    if (lowerMessage.includes('salary') || lowerMessage.includes('pay') || lowerMessage.includes('compensation')) {
-        return "For compensation details, please contact Abhijeet directly via email. He's open to discussing opportunities that match his skills and experience.";
+    if (lowerMessage.includes('social') || lowerMessage.includes('social media') || lowerMessage.includes('instagram') || lowerMessage.includes('facebook')) {
+        return "Abhijeet is most active on LinkedIn and GitHub. For professional connections, LinkedIn is the best platform!";
     }
     
-    if (lowerMessage.includes('hobby') || lowerMessage.includes('interest') || lowerMessage.includes('hobbies')) {
-        return "Outside of coding, Abhijeet enjoys learning new technologies, contributing to open-source projects, and staying updated with the latest trends in software development.";
+    if (lowerMessage.includes('address') || lowerMessage.includes('location') || lowerMessage.includes('pune') || lowerMessage.includes('where live')) {
+        return "He's currently based in Pune, Maharashtra - India's growing IT hub! Open to opportunities in Pune or remote positions.";
     }
     
-    if (lowerMessage.includes('availability') || lowerMessage.includes('available') || lowerMessage.includes('freelance')) {
-        return "Abhijeet is available for full-time opportunities, freelance projects, and collaborations. Feel free to reach out to discuss potential opportunities!";
+    // ========== EDUCATION (Expanded) ==========
+    if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('qualification') || lowerMessage.includes('study')) {
+        return "• M.Sc Computer Science: Savitribai Phule Pune University (2024-2026)\n• B.Sc Computer Science: Vidya Pratishthan College, Baramati (2021-2024)\n• Always learning through online courses and hands-on projects!";
     }
     
-    // Technical Deep-Dive Questions
-    if (lowerMessage.includes('framework') || lowerMessage.includes('.net')) {
-        return "Abhijeet specializes in .NET technologies including ASP.NET MVC, ASP.NET Core, Web API, Entity Framework, and Windows Forms applications.";
+    if (lowerMessage.includes('cgpa') || lowerMessage.includes('grade') || lowerMessage.includes('marks') || lowerMessage.includes('percentage')) {
+        return "Abhijeet has maintained excellent academic performance throughout his education. For specific grades, please check his resume or contact him directly!";
     }
     
-    if (lowerMessage.includes('database') || lowerMessage.includes('sql')) {
-        return "He has strong experience with SQL Server, T-SQL, stored procedures, and database design principles for scalable applications.";
+    if (lowerMessage.includes('university') || lowerMessage.includes('college') || lowerMessage.includes('alma mater')) {
+        return "Currently pursuing Masters at Savitribai Phule Pune University and completed Bachelors from Vidya Pratishthan College, Baramati.";
     }
     
-    if (lowerMessage.includes('frontend') || lowerMessage.includes('javascript') || lowerMessage.includes('angular')) {
-        return "For frontend development, Abhijeet works with HTML5, CSS3, JavaScript, Angular, Bootstrap, and jQuery to create responsive user interfaces.";
+    if (lowerMessage.includes('certification') || lowerMessage.includes('certificate') || lowerMessage.includes('course')) {
+        return "He regularly completes online certifications from platforms like Udemy, Coursera, and Microsoft Learn to stay updated with latest technologies.";
     }
     
-    if (lowerMessage.includes('api') || lowerMessage.includes('rest')) {
-        return "He has experience building RESTful APIs using ASP.NET Web API, with knowledge of authentication, documentation (Swagger), and integration testing.";
+    // ========== TECHNICAL SKILLS (Deep Dive) ==========
+    if (lowerMessage.includes('.net') || lowerMessage.includes('dotnet') || lowerMessage.includes('c#')) {
+        return "Expertise in: C#, ASP.NET MVC, ASP.NET Core, .NET Framework, Entity Framework, LINQ, Windows Forms, Web API, RESTful services, and ADO.NET.";
     }
     
-    // Project-Specific Questions
-    if (lowerMessage.includes('visitor track') || lowerMessage.includes('visitor management')) {
-        return "Visitor Track is a smart visitor management system built with C# WinForms and SQL Server for tracking visitor entries, purposes, and data storage.";
+    if (lowerMessage.includes('database') || lowerMessage.includes('sql') || lowerMessage.includes('server') || lowerMessage.includes('db')) {
+        return "Database Skills: Microsoft SQL Server, T-SQL, Stored Procedures, Functions, Triggers, Database Design, Normalization, Indexing, Query Optimization.";
     }
     
-    if (lowerMessage.includes('society management') || lowerMessage.includes('society system')) {
-        return "The Society Management System is a web application with role-based access, financial tracking, payment management, and reporting features built with ASP.NET MVC.";
+    if (lowerMessage.includes('frontend') || lowerMessage.includes('javascript') || lowerMessage.includes('html') || lowerMessage.includes('css')) {
+        return "Frontend Stack: HTML5, CSS3, JavaScript, TypeScript, Angular, jQuery, Bootstrap, Responsive Design, Cross-browser Compatibility.";
     }
     
-    if (lowerMessage.includes('github') || lowerMessage.includes('repository') || lowerMessage.includes('repos')) {
-        return "You can explore Abhijeet's projects and code on GitHub: github.com/Abhi-maxx. Some projects may be private due to client confidentiality.";
+    if (lowerMessage.includes('framework') || lowerMessage.includes('library') || lowerMessage.includes('technology')) {
+        return "Tech Stack: .NET Ecosystem, Entity Framework Core, ASP.NET Identity, AutoMapper, Serilog, Swagger/OpenAPI, Git, Agile/Scrum.";
     }
     
-    // Career & Opportunity Questions
-    if (lowerMessage.includes('hire') || lowerMessage.includes('recruit') || lowerMessage.includes('job')) {
-        return "Yes, Abhijeet is actively looking for new opportunities! He's interested in Full Stack .NET Developer roles, both remote and in Pune.";
+    if (lowerMessage.includes('azure') || lowerMessage.includes('cloud') || lowerMessage.includes('devops')) {
+        return "Familiar with: Azure Basics, CI/CD Concepts, Docker Fundamentals, and actively learning cloud technologies!";
     }
     
-    if (lowerMessage.includes('interview') || lowerMessage.includes('schedule')) {
-        return "Great! Please email Abhijeet at divekarabhiii@gmail.com to schedule an interview. He's flexible with timing and format.";
+    if (lowerMessage.includes('testing') || lowerMessage.includes('test') || lowerMessage.includes('debug')) {
+        return "Testing Experience: Unit Testing (xUnit/NUnit), Integration Testing, Postman for API testing, and browser debugging tools.";
     }
     
-    if (lowerMessage.includes('relocate') || lowerMessage.includes('remote')) {
-        return "Abhijeet is based in Pune and prefers opportunities in Pune or remote positions. He's open to discussing relocation for the right opportunity.";
+    // ========== PROJECTS (Detailed) ==========
+    if (lowerMessage.includes('visitor track') || lowerMessage.includes('visitor management') || lowerMessage.includes('visitor system')) {
+        return "Visitor Track System:\n• Tech: C# WinForms, SQL Server\n• Features: Visitor registration, purpose tracking, photo capture, data export\n• Role: Full-stack development, database design\n• Impact: Automated manual visitor logs";
     }
     
-    if (lowerMessage.includes('experience') || lowerMessage.includes('years')) {
-        return "Abhijeet has 1.5+ years of experience in Full Stack .NET Development with hands-on knowledge of C#, ASP.NET, SQL Server, and modern web technologies.";
+    if (lowerMessage.includes('society management') || lowerMessage.includes('society system') || lowerMessage.includes('apartment')) {
+        return "Society Management System:\n• Tech: ASP.NET MVC, SQL Server, Bootstrap\n• Features: Role-based access, payment tracking, complaint management, announcements\n• Role: Backend development, API creation\n• Impact: Streamlined society operations";
     }
     
-    if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('qualification')) {
-        return "Abhijeet is pursuing a Master of Computer Science at Savitribai Phule Pune University (expected 2026) and holds a Bachelor of Computer Science from Vidya Pratishthan College, Baramati (2024).";
+    if (lowerMessage.includes('portfolio') || lowerMessage.includes('website') || lowerMessage.includes('this site')) {
+        return "This Portfolio Website:\n• Tech: HTML5, CSS3, JavaScript, Responsive Design\n• Features: Interactive UI, chatbot, project showcase\n• Purpose: Personal branding and skill demonstration";
     }
     
-    // General responses
-    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-        return "Hello! I'm Abhijeet's assistant. How can I help you today?";
+    if (lowerMessage.includes('github') || lowerMessage.includes('repository') || lowerMessage.includes('code') || lowerMessage.includes('projects')) {
+        return "GitHub: github.com/Abhi-maxx\n• Contains: Personal projects, code samples, open-source contributions\n• Note: Some client projects are private due to NDAs";
     }
     
-    if (lowerMessage.includes('experience') || lowerMessage.includes('work')) {
-        return "Abhijeet has 1.5+ years of experience in Full Stack .NET Development. He specializes in C#, ASP.NET, SQL Server, and modern web technologies. Check out the Experience section for more details!";
+    if (lowerMessage.includes('favorite project') || lowerMessage.includes('best project') || lowerMessage.includes('proud')) {
+        return "Abhijeet is particularly proud of the Society Management System as it involved complex business logic, role management, and real-world problem-solving!";
     }
     
-    if (lowerMessage.includes('skill') || lowerMessage.includes('technology')) {
-        return "Abhijeet's technical skills include C#, ASP.NET MVC/Core, SQL Server, JavaScript, HTML/CSS, Angular, Entity Framework, and more. You can find a complete list in the Skills section!";
+    // ========== EXPERIENCE & CAREER (Expanded) ==========
+    if (lowerMessage.includes('experience') || lowerMessage.includes('work experience') || lowerMessage.includes('years')) {
+        return "1.5+ years of professional experience in:\n• Full Stack .NET Development\n• Database Design & Optimization\n• Web Application Development\n• API Development & Integration\n• Client Requirement Analysis";
     }
     
-    if (lowerMessage.includes('project') || lowerMessage.includes('work')) {
-        return "Abhijeet has worked on several projects including Visitor Track, Society Management System, and this portfolio website. Check out the Projects section to see them in detail!";
+    if (lowerMessage.includes('current') || lowerMessage.includes('working') || lowerMessage.includes('job') || lowerMessage.includes('employed')) {
+        return "Abhijeet is actively seeking new opportunities while working on personal projects and skill enhancement. Open to full-time roles starting immediately!";
     }
     
-    if (lowerMessage.includes('resume') || lowerMessage.includes('cv')) {
-        return "You can download Abhijeet's resume by clicking the 'Download Resume' button in the About section!";
+    if (lowerMessage.includes('previous') || lowerMessage.includes('past') || lowerMessage.includes('company') || lowerMessage.includes('work history')) {
+        return "He has worked on multiple projects including freelance work and collaborative development. Check LinkedIn for detailed professional timeline!";
     }
     
-    if (lowerMessage.includes('service') || lowerMessage.includes('hire') || lowerMessage.includes('job')) {
-        return "Abhijeet is available for Full Stack .NET Development projects and opportunities. He specializes in web applications, APIs, and database solutions. Feel free to reach out via the Contact section!";
+    if (lowerMessage.includes('achievement') || lowerMessage.includes('accomplishment') || lowerMessage.includes('success')) {
+        return "Key achievements:\n• Built scalable systems from scratch\n• Optimized database queries improving performance by 40%\n• Successfully delivered projects meeting all client requirements";
     }
     
-    if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
-        return "You're welcome! Let me know if you have any other questions.";
+    // ========== CAREER GOALS & AVAILABILITY ==========
+    if (lowerMessage.includes('hire') || lowerMessage.includes('recruit') || lowerMessage.includes('job') || lowerMessage.includes('opportunity')) {
+        return "Yes! Abhijeet is actively seeking:\n• Full-time .NET Developer roles\n• Remote positions\n• Pune-based opportunities\n• Start date: Immediately available";
     }
     
-    if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
-        return "Goodbye! Feel free to reach out if you have more questions. Have a great day!";
+    if (lowerMessage.includes('interview') || lowerMessage.includes('schedule') || lowerMessage.includes('meet') || lowerMessage.includes('call')) {
+        return "Perfect! Please email divekarabhiii@gmail.com to schedule. Available for:\n• Video interviews\n• Technical assessments\n• On-site meetings in Pune\n• Flexible with timing";
     }
     
-
-     if (lowerMessage.includes('bye bye') || lowerMessage.includes('goodbye')) {
-        return "Goodbye! Feel free to reach out if you have more questions. Have a great day!";
+    if (lowerMessage.includes('salary') || lowerMessage.includes('pay') || lowerMessage.includes('compensation') || lowerMessage.includes('expectation')) {
+        return "Compensation expectations are competitive and based on role requirements, location, and benefits. Open to discussion during interview process!";
     }
     
-    if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
-        return "I can help you with information about Abhijeet's skills, experience, projects, contact details, education, and availability. Try asking about his technical expertise or how to contact him!";
+    if (lowerMessage.includes('relocate') || lowerMessage.includes('remote') || lowerMessage.includes('work from home') || lowerMessage.includes('hybrid')) {
+        return "Preferences:\n• Pune: On-site/Hybrid\n• Other locations: Remote opportunities\n• Relocation: Possible for exceptional opportunities";
     }
-
-
-       if (lowerMessage.includes('help me ') || lowerMessage.includes('what can you do')) {
-        return "I can help you with information about Abhijeet's skills, experience, projects, contact details, education, and availability. Try asking about his technical expertise or how to contact him!";
-    }
-
     
-    return "I'm not sure how to answer that. You can ask me about Abhijeet's experience, skills, projects, contact information, education, or availability. Try one of the quick questions above!";
+    if (lowerMessage.includes('goal') || lowerMessage.includes('aspiration') || lowerMessage.includes('future') || lowerMessage.includes('dream')) {
+        return "Career Goals:\n• Become a Senior Full Stack Developer\n• Master cloud technologies (Azure/AWS)\n• Lead development teams\n• Contribute to open-source projects";
+    }
+    
+    // ========== PERSONAL INTERESTS & HOBBIES ==========
+    if (lowerMessage.includes('hobby') || lowerMessage.includes('interest') || lowerMessage.includes('hobbies') || lowerMessage.includes('free time')) {
+        return "Outside coding:\n• Learning new technologies\n• Reading tech blogs/articles\n• Contributing to GitHub\n• Problem-solving on LeetCode\n• Exploring new frameworks";
+    }
+    
+    if (lowerMessage.includes('read') || lowerMessage.includes('book') || lowerMessage.includes('blog')) {
+        return "Enjoys reading:\n• Tech documentation\n• Medium articles\n• Microsoft Learn modules\n• Programming books\n• Tech newsletters";
+    }
+    
+    if (lowerMessage.includes('movie') || lowerMessage.includes('film') || lowerMessage.includes('entertainment')) {
+        return "Prefers tech documentaries, sci-fi movies, and occasionally watches web series related to technology and startups!";
+    }
+    
+    if (lowerMessage.includes('travel') || lowerMessage.includes('vacation') || lowerMessage.includes('holiday')) {
+        return "When not coding, enjoys exploring new places, especially tech hubs and cities with vibrant developer communities!";
+    }
+    
+    // ========== LEARNING & DEVELOPMENT ==========
+    if (lowerMessage.includes('learn') || lowerMessage.includes('learning') || lowerMessage.includes('study') || lowerMessage.includes('currently learning')) {
+        return "Currently focusing on:\n• Advanced .NET Core features\n• Microservices architecture\n• Azure cloud services\n• React.js for frontend diversity\n• System design principles";
+    }
+    
+    if (lowerMessage.includes('course') || lowerMessage.includes('udemy') || lowerMessage.includes('coursera')) {
+        return "Regularly takes courses on:\n• Pluralsight\n• Udemy\n• Coursera\n• Microsoft Learn\n• YouTube tech channels";
+    }
+    
+    // ========== WORK STYLE & PREFERENCES ==========
+    if (lowerMessage.includes('work style') || lowerMessage.includes('approach') || lowerMessage.includes('methodology')) {
+        return "Work Approach:\n• Agile/Scrum methodology\n• Clean code principles\n• Test-driven development\n• Continuous learning\n• Collaborative problem-solving";
+    }
+    
+    if (lowerMessage.includes('team') || lowerMessage.includes('collaborate') || lowerMessage.includes('work with others')) {
+        return "Team Player:\n• Enjoys collaborative environments\n• Good communicator\n• Open to feedback\n• Shares knowledge\n• Supports team members";
+    }
+    
+    if (lowerMessage.includes('challenge') || lowerMessage.includes('difficult') || lowerMessage.includes('hard')) {
+        return "Enjoys technical challenges, especially:\n• Performance optimization\n• Complex business logic\n• Database design puzzles\n• Integration problems\n• Scalability issues";
+    }
+    
+    // ========== FUN & CASUAL QUESTIONS ==========
+    if (lowerMessage.includes('coffee') || lowerMessage.includes('tea') || lowerMessage.includes('drink')) {
+        return "Prefers coffee while coding - helps with those late-night debugging sessions! ☕";
+    }
+    
+    if (lowerMessage.includes('music') || lowerMessage.includes('listen') || lowerMessage.includes('song')) {
+        return "Often listens to instrumental or lofi music while coding for better concentration!";
+    }
+    
+    if (lowerMessage.includes('inspiration') || lowerMessage.includes('motivation') || lowerMessage.includes('why coding')) {
+        return "Inspired by how technology can solve real-world problems and create positive impact through efficient solutions!";
+    }
+    
+    if (lowerMessage.includes('advice') || lowerMessage.includes('tip') || lowerMessage.includes('suggest')) {
+        return "Abhijeet's advice: 'Never stop learning. Technology evolves rapidly, and continuous learning is key to staying relevant in software development!'";
+    }
+    
+    if (lowerMessage.includes('fun fact') || lowerMessage.includes('interesting') || lowerMessage.includes('trivia')) {
+        return "Fun Fact: Abhijeet once optimized a database query that reduced report generation time from 2 minutes to 5 seconds!";
+    }
+    
+    // ========== QUICK RESPONSES ==========
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey') || lowerMessage.includes('greeting')) {
+        return "Hello! 👋 I'm Abhijeet's assistant. Ask me about his skills, projects, experience, or how to contact him!";
+    }
+    
+    if (lowerMessage.includes('thank') || lowerMessage.includes('thanks') || lowerMessage.includes('appreciate')) {
+        return "You're welcome! 😊 Let me know if you need more information or have other questions!";
+    }
+    
+    if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye') || lowerMessage.includes('see you') || lowerMessage.includes('ciao')) {
+        return "Goodbye! 👋 Feel free to return if you have more questions. Best wishes!";
+    }
+    
+    if (lowerMessage.includes('help') || lowerMessage.includes('what can you do') || lowerMessage.includes('assist')) {
+        return "I can help with:\n• Technical skills & experience\n• Project details\n• Contact information\n• Education background\n• Career availability\n• Personal interests\nTry asking specific questions or use the quick questions above!";
+    }
+    
+    if (lowerMessage.includes('weather') || lowerMessage.includes('time') || lowerMessage.includes('date')) {
+        return "I'm focused on Abhijeet's professional information! For other queries, feel free to ask about his development skills or projects. 😊";
+    }
+    
+    // ========== DEFAULT RESPONSE ==========
+    return "That's an interesting question! I'm not sure about that specific detail. Try asking about:\n• Technical skills (.NET, SQL, Angular)\n• Work experience\n• Projects\n• How to contact Abhijeet\n• Education background\nOr try one of the quick questions above!";
 }
    </script>
 </body>
